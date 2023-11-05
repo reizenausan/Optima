@@ -1,20 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import LoginScreen from './screens/LoginScreen';
+import DashboardScreen from './screens/DashboardScreen';
+import CreatePatientScreen from './screens/CreatePatientScreen';
+import UpdatePatientScreen from './screens/UpdatePatientScreen';
+import DeletePatientScreen from './screens/DeletePatientScreen';
 
-export default function App() {
+const Stack = createStackNavigator();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Login">
+        <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }}/>
+        <Stack.Screen name="Dashboard" component={DashboardScreen} options={{ headerShown: false }}/>
+        <Stack.Screen name="CreatePatient" component={CreatePatientScreen} options={{ headerShown: false }}/>
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+        {/* Add more screens and navigation here as your project progresses */}
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
+
+export default App;
